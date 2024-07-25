@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="play.css">
+    <script src="arr.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">Quiz Game</div>
+        <div class="content">
+            <div class="text-container" id="sel">
+                <p>Select the category:</p>
+                <select id="select">
+                    <!-- Options will be dynamically added -->
+                </select>
+                <button onclick="startGame()" class="btn">Start Game</button>
+            </div>
+            <div class="loader hidden" id="loader"></div>
+            <div class="game hidden" id="game">
+                <p id="no"><span>Question &nbsp;</span></p>
+                <div class="main-progress">
+                    <div class="progress"></div>
+                </div>
+                <h2 id="question">Write question</h2>
+                <div class="container-options">
+                    <p class="choice-pre">A</p>
+                    <p class="choice-text" data-number="1">1</p>
+                </div>
+                <div class="container-options">
+                    <p class="choice-pre">B</p>
+                    <p class="choice-text" data-number="2">1</p>
+                </div>
+                <div class="container-options">
+                    <p class="choice-pre">C</p>
+                    <p class="choice-text" data-number="3">1</p>
+                </div>
+                <div class="container-options">
+                    <p class="choice-pre">D</p>
+                    <p class="choice-text" data-number="4">1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+    <script src="cat.js"></script>
+    <script>
+        function startGame() {
+            document.getElementById('sel').classList.add('hidden');
+            document.getElementById('loader').classList.remove('hidden');
+            
+            const category = document.getElementById('select').value;
+            fe(category);
+        }
+
+        function fe(category) {
+            fetch("https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=easy&type=multiple")
+                .then(res => {
+                    return res.json();
+                })
+                .then(questions => {
+                    availablequestioons = questions.results.map(eachquestion => {
+                        const formatquestion = {
+                            question: eachquestion.question
+                        };
+                        const options = [...eachquestion.incorrect_answers];
+                        formatquestion.answer = Math.floor(Math.random() * 4) + 1;
+                        options.splice(formatquestion.answer - 1, 0, eachquestion.correct_answer);
+                        options.forEach((choice, index) => {
+                            formatquestion["choice" + (index + 1)] = choice;
+                        });
+                        return formatquestion;
+                    });
+                    f();
+                    document.getElementById('loader').classList.add('hidden');
+                    document.getElementById('game').classList.remove('hidden');
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+
+        function f() {
+            if (availablequestioons.length === 0 && visitedquestions >= totalquestions) {
+                localStorage.setItem('maxscore', score);
+                return document.location.assign("end.html");
+            }
+            
+            visitedquestions++;
+            document.getElementsByClassName('progress')[0].style.width = (visitedquestions / totalquestions) * 100 + '%';
+            document.getElementById('no').lastChild.data = visitedquestions + '/' + totalquestions;
+            
+            let rand = Math.floor(Math.random() * availablequestioons.length);
+            selectedQuestion = availablequestioons[rand];
+            question.innerHTML = selectedQuestion.question;
+            choices.forEach(choice => {
+                const x = 'choice' + choice.dataset['number'];
+                choice.innerHTML = selectedQuestion[x];
+            });
+            availablequestioons.splice(rand, 1);
+            answer = true;
+        }
+
+        choices.forEach(choice => {
+            choice.addEventListener('click', e => {
+                if (!answer) return;
+                answer = false;
+                const clicked = e.target;
+                const option = clicked.dataset['number'];
+                const addclass = (option == selectedQuestion.answer) ? "correct" : "wrong";
+                if (option == selectedQuestion.answer) score++;
+                clicked.parentNode.classList.add(addclass);
+                setTimeout(() => {
+                    clicked.parentNode.classList.remove(addclass);
+                    f();
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

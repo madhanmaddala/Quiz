@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="end.css"> <!-- Add this line if you separate CSS into a new file -->
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">Quiz Game</div>
+        <div class="result-container">
+            <h1 id="score">0</h1>
+            <form id="form">
+                <div class="username-container">
+                    <span class="user-icon">👤</span>
+                    <input type="text" name="username" id="username" placeholder="username" required>
+                </div>
+                <input type="button" class="btn" id="btn" onclick="savedata(event)" value="Save" disabled>
+            </form>
+            <div class="btn-container">
+                <a href="play.html" class="btn">Play Again</a>
+                <a href="index.html" class="btn">Home</a>
+            </div>
+        </div>
+    </div>
+    <script src="end.js"></script>
+</body>
+</html>

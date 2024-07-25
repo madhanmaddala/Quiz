@@ -1,0 +1,131 @@
+/* Center container and make it look attractive */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #edceba;
+}
+.navbar {
+    position: absolute; /* Absolute positioning within the container */
+    top: 0; /* Align at the top */
+    left: 0; /* Align to the left */
+    width: calc(100% - 0rem); /* Full width within container minus padding */
+    background-color: #f3ded1; /* Background color of navbar */
+    color: rgb(10, 10, 10); /* Text color */
+    text-align: center; /* Center the text */
+    padding: 1rem; /* Padding around the text */
+    font-size: 3rem; /* Font size */
+    z-index: 1; /* Ensure navbar is above other content */
+    border-bottom: 2px solid rgb(8, 8, 8); /* Straight bottom border */
+    border-radius: 2rem 2rem 0 0; /* Rounded top corners only */
+}
+
+.result-container {
+    background:  #edceba;
+    padding: 2rem;
+    border: 1.5px solid black;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+    min-height: 300px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+form {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.username-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-icon {
+    font-size: 1.5rem; /* Adjust size as needed */
+    margin-right: 0.5rem; /* Space between emoji and input field */
+}
+
+input[type="text"] {
+    width: calc(100% - 3rem); /* Adjust to fit the emoji */
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+input[type="button"] {
+    width: 150px; /* Adjust the width to make it smaller */
+    padding: 0.5rem;
+    background-color: white;
+    border: 1px solid #28a745;
+    color: #28a745;
+    font-size: 1rem; /* Smaller font size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="button"]:disabled {
+    background-color: #ccc;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+input[type="button"]:hover:not(:disabled) {
+    background-color: #f8f9f8;
+}
+
+input[type="button"]:active:not(:disabled) {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem; /* Add gap between the buttons */
+}
+
+a.btn {
+    flex: 1;
+    display: block;
+    padding: 0.5rem;
+    background-color: white;
+    border: 1.5px solid black;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem; /* Match button font size */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Center the text inside the button */
+}
+
+a.btn:hover {
+    color: white;
+    background-color: #9c4a15;
+}
+
+a.btn:active {
+    background-color: white;
+    color: white;
+    border: 1.5px solid black;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}

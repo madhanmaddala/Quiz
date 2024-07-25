@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #edceba; /* Optional: background color for better visibility */
+    /* border  */
+}
+
+.justify-center {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem; /* Adjusted font-size for better fit */
+    margin-bottom: 2rem; /* Space between table and buttons */
+    width: 100%;
+    align-self: center;
+}
+
+table, td, th {
+    border: 1.5px solid black;
+    border-collapse: collapse;
+    border-spacing: 3px;
+    width: 100%;
+    text-align: left;
+}
+
+
+
+td, th {
+    padding: 1rem;
+    /* text-align: center; */
+}
+
+th {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.btn1 {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Make buttons take full width */
+    gap: 1rem; /* Add some space between buttons */
+}
+
+.btn {
+    flex: 1; /* Make buttons take equal space */
+    padding: 1rem;
+    background-color: white; /* Default button color */
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn:hover {
+    background-color: #9c4a15; /* Color on hover */
+}
